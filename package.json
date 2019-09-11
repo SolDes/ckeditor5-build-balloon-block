@@ -1,7 +1,7 @@
 {
-  "name": "@ckeditor/ckeditor5-build-balloon-block",
+  "name": "@soldes/ckeditor5-build-balloon-block",
   "version": "12.4.0",
-  "description": "The balloon editor build of CKEditor 5 with a block toolbar – the best browser-based rich text editor.",
+  "description": "The balloon editor build of CKEditor 5 with a block toolbar – the best browser-based rich text editor (SolDes custom).",
   "keywords": [
     "wysiwyg",
     "rich text",
@@ -40,7 +40,7 @@
     "@ckeditor/ckeditor5-image": "^14.0.0",
     "@ckeditor/ckeditor5-link": "^11.1.2",
     "@ckeditor/ckeditor5-list": "^12.1.0",
-    "@ckeditor/ckeditor5-media-embed": "^11.1.4",
+    "@ckeditor/ckeditor5-media-embed": "git+ssh://git@github.com/SolDes/ckeditor5-media-embed.git",
     "@ckeditor/ckeditor5-paragraph": "^11.0.5",
     "@ckeditor/ckeditor5-paste-from-office": "^11.1.0",
     "@ckeditor/ckeditor5-table": "^14.0.0",
@@ -63,11 +63,11 @@
   },
   "author": "CKSource (http://cksource.com/)",
   "license": "GPL-2.0-or-later",
-  "homepage": "https://ckeditor.com/ckeditor-5",
-  "bugs": "https://github.com/ckeditor/ckeditor5/issues",
+  "homepage": "",
+  "bugs": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ckeditor/ckeditor5-build-balloon-block.git"
+    "url": "https://github.com/SolDes/ckeditor5-build-balloon-block.git"
   },
   "scripts": {
     "build": "webpack --mode production",
