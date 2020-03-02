@@ -16,6 +16,7 @@ import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
 import FontColor from '@ckeditor/ckeditor5-font/src/FontColor';
 import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/FontBackgroundColor';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
@@ -40,24 +41,24 @@ export default class BalloonEditor extends BalloonEditorBase { }
 
 // Plugins to include in the build.
 BalloonEditor.builtinPlugins = [
-	Essentials,
 	Alignment,
 	Autoformat,
 	BlockToolbar,
+	Bold,
+	CodeBlock,
+	Essentials,
 	FontColor,
 	FontBackgroundColor,
-	Bold,
-	Italic,
-	Underline,
-	CodeBlock,
 	Heading,
+	HorizontalLine,
 	Image,
 	ImageCaption,
+	ImageResize,
 	ImageStyle,
 	ImageToolbar,
 	ImageUpload,
-	ImageResize,
 	Indent,
+	Italic,
 	Link,
 	List,
 	MediaEmbed,
@@ -65,9 +66,10 @@ BalloonEditor.builtinPlugins = [
 	PasteFromOffice,
 	RemoveFormat,
 	Table,
-	TableToolbar,
+	TableCellProperties,
 	TableProperties,
-	TableCellProperties
+	TableToolbar,
+	Underline
 ];
 
 BalloonEditor.plugins = [];
@@ -76,6 +78,11 @@ const customColorPalette = [
 	{
 		color: '#444443',
 		label: 'Black'
+	},
+	{
+		color: '#ffffff',
+		label: 'White',
+		hasBorder: true
 	},
 	{
 		color: '#0070d2',
@@ -102,21 +109,16 @@ const customColorPalette = [
 // Editor configuration.
 BalloonEditor.defaultConfig = {
 	blockToolbar: [
-		'removeFormat',
 		'heading',
-		'fontColor',
-		'fontBackgroundColor',
 		'bold',
 		'italic',
 		'underline',
 		'link',
 		'codeBlock',
-		'alignment',
+		'horizontalLine',
 		'|',
 		'bulletedList',
 		'numberedList',
-		'indent',
-		'outdent',
 		'|',
 		'imageUpload',
 		'mediaEmbed',
@@ -165,9 +167,11 @@ BalloonEditor.defaultConfig = {
 		]
 	},
 	fontColor: {
+		documentColors: 0,
 		colors: customColorPalette
 	},
 	fontBackgroundColor: {
+		documentColors: 0,
 		colors: customColorPalette
 	},
 	heading: {

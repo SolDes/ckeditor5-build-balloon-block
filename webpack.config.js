@@ -80,7 +80,7 @@ module.exports = {
 			path.resolve( __dirname, 'theme' ) + '/icons/utility/remove_link.svg'
 		),
 		new webpack.NormalModuleReplacementPlugin(
-			/code\.svg/,
+			/codeblock\.svg/,
 			path.resolve( __dirname, 'theme' ) + '/icons/utility/insert_tag_field.svg'
 		),
 		new webpack.NormalModuleReplacementPlugin(
@@ -135,6 +135,18 @@ module.exports = {
 			/redo\.svg/,
 			path.resolve( __dirname, 'theme' ) + '/icons/utility/redo.svg'
 		),
+		new webpack.NormalModuleReplacementPlugin(
+			/font-color\.svg/,
+			path.resolve( __dirname, 'theme' ) + '/icons/utility/text_color.svg'
+		),
+		new webpack.NormalModuleReplacementPlugin(
+			/font-background\.svg/,
+			path.resolve( __dirname, 'theme' ) + '/icons/utility/text_background_color.svg'
+		),
+		new webpack.NormalModuleReplacementPlugin(
+			/remove-format\.svg/,
+			path.resolve( __dirname, 'theme' ) + '/icons/utility/remove_formatting.svg'
+		)
 	],
 
 	module: {
