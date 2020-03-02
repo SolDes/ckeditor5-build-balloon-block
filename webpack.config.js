@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
@@ -11,7 +11,7 @@ const path = require( 'path' );
 const webpack = require( 'webpack' );
 const { bundler, styles } = require( '@ckeditor/ckeditor5-dev-utils' );
 const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
-const UglifyJsWebpackPlugin = require( 'uglifyjs-webpack-plugin' );
+const TerserPlugin = require( 'terser-webpack-plugin' );
 
 module.exports = {
 	devtool: 'source-map',
@@ -31,14 +31,15 @@ module.exports = {
 
 	optimization: {
 		minimizer: [
-			new UglifyJsWebpackPlugin( {
+			new TerserPlugin( {
 				sourceMap: true,
-				uglifyOptions: {
+				terserOptions: {
 					output: {
 						// Preserve CKEditor 5 license comments.
 						comments: /^!/
 					}
-				}
+				},
+				extractComments: false
 			} )
 		]
 	},
@@ -79,7 +80,7 @@ module.exports = {
 			path.resolve( __dirname, 'theme' ) + '/icons/utility/remove_link.svg'
 		),
 		new webpack.NormalModuleReplacementPlugin(
-			/code\.svg/,
+			/codeblock\.svg/,
 			path.resolve( __dirname, 'theme' ) + '/icons/utility/insert_tag_field.svg'
 		),
 		new webpack.NormalModuleReplacementPlugin(
@@ -134,6 +135,18 @@ module.exports = {
 			/redo\.svg/,
 			path.resolve( __dirname, 'theme' ) + '/icons/utility/redo.svg'
 		),
+		new webpack.NormalModuleReplacementPlugin(
+			/font-color\.svg/,
+			path.resolve( __dirname, 'theme' ) + '/icons/utility/text_color.svg'
+		),
+		new webpack.NormalModuleReplacementPlugin(
+			/font-background\.svg/,
+			path.resolve( __dirname, 'theme' ) + '/icons/utility/text_background_color.svg'
+		),
+		new webpack.NormalModuleReplacementPlugin(
+			/remove-format\.svg/,
+			path.resolve( __dirname, 'theme' ) + '/icons/utility/remove_formatting.svg'
+		)
 	],
 
 	module: {
@@ -159,7 +172,7 @@ module.exports = {
 							},
 							minify: true
 						} )
-					},
+					}
 				]
 			}
 		]
