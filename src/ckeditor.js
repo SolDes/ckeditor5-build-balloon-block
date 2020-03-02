@@ -12,7 +12,7 @@ import BlockToolbar from '@ckeditor/ckeditor5-ui/src/toolbar/block/blocktoolbar'
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
-import Code from '@ckeditor/ckeditor5-basic-styles/src/code';
+import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
@@ -42,7 +42,7 @@ BalloonEditor.builtinPlugins = [
 	Bold,
 	Italic,
 	Underline,
-	Code,
+	CodeBlock,
 	Heading,
 	Image,
 	ImageCaption,
@@ -70,7 +70,7 @@ BalloonEditor.defaultConfig = {
 		'italic',
 		'underline',
 		'link',
-		'code',
+		'codeBlock',
 		'alignment',
 		'|',
 		'bulletedList',
@@ -91,7 +91,7 @@ BalloonEditor.defaultConfig = {
 			'italic',
 			'underline',
 			'link',
-			'code',
+			'codeBlock',
 			'|',
 			'alignment:left',
 			'alignment:center',
@@ -100,6 +100,18 @@ BalloonEditor.defaultConfig = {
 			'|',
 			'indent',
 			'outdent'
+		]
+	},
+	codeBlock: {
+		languages: [
+			{ language: 'plaintext', label: 'Plain text' }, // The default language.
+			{ language: 'ampscript-ssjs', label: 'AMPScript and SSJS' },
+			{ language: 'html', label: 'HTML' },
+			{ language: 'css', label: 'CSS' },
+			{ language: 'javascript', label: 'JavaScript' },
+			{ language: 'php', label: 'PHP' },
+			{ language: 'ruby', label: 'Ruby' },
+			{ language: 'tampermonkey', label: 'Tampermonkey' }
 		]
 	},
 	heading: {
@@ -165,15 +177,15 @@ BalloonEditor.defaultConfig = {
 			'alignRight'
 		]
 	},
+	mediaEmbed: {
+		previewsInData: true
+	},
 	table: {
 		contentToolbar: [
 			'tableColumn',
 			'tableRow',
 			'mergeTableCells'
 		]
-	},
-	mediaEmbed: {
-		previewsInData: true
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
