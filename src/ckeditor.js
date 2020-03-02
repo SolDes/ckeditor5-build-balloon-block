@@ -13,6 +13,8 @@ import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import CodeBlock from '@ckeditor/ckeditor5-code-block/src/codeblock';
+import FontColor from '@ckeditor/ckeditor5-font/src/FontColor';
+import FontBackgroundColor from '@ckeditor/ckeditor5-font/src/FontBackgroundColor';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
@@ -26,8 +28,11 @@ import List from '@ckeditor/ckeditor5-list/src/list';
 import MediaEmbed from '@soldes/ckeditor5-media-embed/src/mediaembed';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
+import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import TableProperties from '@ckeditor/ckeditor5-table/src/tableproperties';
+import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperties';
 
 import '../theme/theme.css';
 
@@ -39,6 +44,8 @@ BalloonEditor.builtinPlugins = [
 	Alignment,
 	Autoformat,
 	BlockToolbar,
+	FontColor,
+	FontBackgroundColor,
 	Bold,
 	Italic,
 	Underline,
@@ -56,16 +63,49 @@ BalloonEditor.builtinPlugins = [
 	MediaEmbed,
 	Paragraph,
 	PasteFromOffice,
+	RemoveFormat,
 	Table,
-	TableToolbar
+	TableToolbar,
+	TableProperties,
+	TableCellProperties
 ];
 
 BalloonEditor.plugins = [];
 
+const customColorPalette = [
+	{
+		color: '#444443',
+		label: 'Black'
+	},
+	{
+		color: '#0070d2',
+		label: 'Blue'
+	},
+	{
+		color: '#002D66',
+		label: 'Navy Blue'
+	},
+	{
+		color: '#4bca81',
+		label: 'Green'
+	},
+	{
+		color: '#ffb75d',
+		label: 'Orange'
+	},
+	{
+		color: '#713b8c',
+		label: 'Purple'
+	}
+];
+
 // Editor configuration.
 BalloonEditor.defaultConfig = {
 	blockToolbar: [
+		'removeFormat',
 		'heading',
+		'fontColor',
+		'fontBackgroundColor',
 		'bold',
 		'italic',
 		'underline',
@@ -87,6 +127,9 @@ BalloonEditor.defaultConfig = {
 	],
 	toolbar: {
 		items: [
+			'removeFormat',
+			'fontColor',
+			'fontBackgroundColor',
 			'bold',
 			'italic',
 			'underline',
@@ -106,13 +149,26 @@ BalloonEditor.defaultConfig = {
 		languages: [
 			{ language: 'plaintext', label: 'Plain text' }, // The default language.
 			{ language: 'ampscript-ssjs', label: 'AMPScript and SSJS' },
-			{ language: 'html', label: 'HTML' },
+			{ language: 'c', label: 'C' },
+			{ language: 'cs', label: 'C#' },
+			{ language: 'cpp', label: 'C++' },
 			{ language: 'css', label: 'CSS' },
+			{ language: 'diff', label: 'Diff' },
+			{ language: 'xml', label: 'HTML/XML' },
+			{ language: 'java', label: 'Java' },
 			{ language: 'javascript', label: 'JavaScript' },
 			{ language: 'php', label: 'PHP' },
+			{ language: 'python', label: 'Python' },
 			{ language: 'ruby', label: 'Ruby' },
-			{ language: 'tampermonkey', label: 'Tampermonkey' }
+			{ language: 'tampermonkey', label: 'Tampermonkey' },
+			{ language: 'typescript', label: 'TypeScript' }
 		]
+	},
+	fontColor: {
+		colors: customColorPalette
+	},
+	fontBackgroundColor: {
+		colors: customColorPalette
 	},
 	heading: {
 		options: [
@@ -184,8 +240,21 @@ BalloonEditor.defaultConfig = {
 		contentToolbar: [
 			'tableColumn',
 			'tableRow',
-			'mergeTableCells'
-		]
+			'mergeTableCells',
+			'tableProperties',
+			'tableCellProperties'
+		],
+		// Set the palettes for tables.
+		tableProperties: {
+			borderColors: customColorPalette,
+			backgroundColors: customColorPalette
+		},
+
+		// Set the palettes for table cells.
+		tableCellProperties: {
+			borderColors: customColorPalette,
+			backgroundColors: customColorPalette
+		}
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
