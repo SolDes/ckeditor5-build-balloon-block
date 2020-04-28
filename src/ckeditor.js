@@ -3,6 +3,8 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
+/* eslint-disable space-in-parens */
+
 // The editor creator to use.
 import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
@@ -243,7 +245,13 @@ BalloonEditor.defaultConfig = {
 		decorators: {
 			addTargetToExternalLinks: {
 				mode: 'automatic',
-				callback: url => /^(https?:)?\/\//.test(url),
+				callback: url => {
+					if (url.includes('solutionscentral.io')) {
+						return false;
+					}
+
+					return /^(https?:)?\/\//.test(url);
+				},
 				attributes: {
 					target: '_blank',
 					rel: 'noopener noreferrer'
